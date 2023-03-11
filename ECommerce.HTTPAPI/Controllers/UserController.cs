@@ -1,5 +1,6 @@
 ﻿using ECommerce.HTTPAPI.Models.User;
 using ECommerce.HTTPAPI.Repository;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,6 +8,7 @@ namespace ECommerce.HTTPAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [EnableCors]
     public class UserController : Controller
     {
         private readonly ILogger<UserController> _logger;
@@ -18,13 +20,15 @@ namespace ECommerce.HTTPAPI.Controllers
             _dbContext = dbContext;
         }
         [HttpPost]
-        public void CreateUser(User input)
+
+        public bool CreateUser(User input)
         {
             try
             {
 
                 _dbContext.Add(input);
-                _dbContext.SaveChanges();    
+                _dbContext.SaveChanges();
+                return true;
             }
             catch(Exception ex)
             {
