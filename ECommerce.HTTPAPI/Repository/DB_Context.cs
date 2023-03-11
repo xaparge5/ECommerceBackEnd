@@ -1,4 +1,5 @@
-﻿using ECommerce.HTTPAPI.Models.User;
+﻿using ECommerce.HTTPAPI.Models.Product;
+using ECommerce.HTTPAPI.Models.User;
 using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.HTTPAPI.Repository
@@ -10,5 +11,6 @@ namespace ECommerce.HTTPAPI.Repository
 
         }
         public DbSet<User> Users { get; set; }
+        public DbSet<Product> Products { get; set; }
     }
 }
