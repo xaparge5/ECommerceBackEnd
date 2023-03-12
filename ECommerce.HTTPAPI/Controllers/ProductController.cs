@@ -25,7 +25,7 @@ namespace ECommerce.HTTPAPI.Controllers
         {
             try
             {
-
+                input.CreationTime = DateTime.Now;
                 _dbContext.Add(input);
                 _dbContext.SaveChanges();
                 return true;
@@ -45,6 +45,8 @@ namespace ECommerce.HTTPAPI.Controllers
                 get.Price = input.Price;
                 get.Description = input.Description;
                 get.Title = input.Title;
+                input.UpdateTime = DateTime.Now;
+                input.UpdaterId = Guid.Parse(HttpContext.Session.GetString("SessionId"));
                 _dbContext.SaveChanges();
                 return true;
             }
