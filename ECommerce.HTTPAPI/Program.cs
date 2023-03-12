@@ -15,6 +15,16 @@ builder.Services.AddDbContext<DB_Context>(options =>
            options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionStr")));
 
 builder.Services.AddCors();
+
+builder.Services.AddDistributedMemoryCache();
+
+
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = ".ECommerce.Session";
+    options.IdleTimeout = TimeSpan.FromSeconds(10);
+    options.Cookie.IsEssential = true;
+});
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(
@@ -28,6 +38,7 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 app.UseCors();
+app.UseSession();
 app.UseCors(builder =>
 {
     builder
