@@ -46,7 +46,7 @@ namespace ECommerce.HTTPAPI.Controllers
                 get.Description = input.Description;
                 get.Title = input.Title;
                 input.UpdateTime = DateTime.Now;
-                input.UpdaterId = Guid.Parse(HttpContext.Session.GetString("SessionId"));
+                input.UpdaterId = input.UpdaterId;
                 _dbContext.SaveChanges();
                 return true;
             }
