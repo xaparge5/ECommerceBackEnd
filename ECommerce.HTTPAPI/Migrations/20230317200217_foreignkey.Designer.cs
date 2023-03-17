@@ -4,6 +4,7 @@ using ECommerce.HTTPAPI.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerce.HTTPAPI.Migrations
 {
     [DbContext(typeof(DB_Context))]
-    partial class DB_ContextModelSnapshot : ModelSnapshot
+    [Migration("20230317200217_foreignkey")]
+    partial class foreignkey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,6 +84,9 @@ namespace ECommerce.HTTPAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -93,6 +98,8 @@ namespace ECommerce.HTTPAPI.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("Products");
                 });
@@ -145,7 +152,7 @@ namespace ECommerce.HTTPAPI.Migrations
                         .IsRequired();
 
                     b.HasOne("ECommerce.HTTPAPI.Models.User", "user")
-                        .WithMany()
+                        .WithMany("Baskets")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -153,6 +160,23 @@ namespace ECommerce.HTTPAPI.Migrations
                     b.Navigation("products");
 
                     b.Navigation("user");
+                });
+
+            modelBuilder.Entity("ECommerce.HTTPAPI.Models.Product", b =>
+                {
+                    b.HasOne("ECommerce.HTTPAPI.Models.Product", null)
+                        .WithMany("Products")
+                        .HasForeignKey("ProductId");
+                });
+
+            modelBuilder.Entity("ECommerce.HTTPAPI.Models.Product", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("ECommerce.HTTPAPI.Models.User", b =>
+                {
+                    b.Navigation("Baskets");
                 });
 #pragma warning restore 612, 618
         }

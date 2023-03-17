@@ -1,4 +1,4 @@
-﻿using ECommerce.HTTPAPI.Models.User;
+﻿using ECommerce.HTTPAPI.Models;
 using ECommerce.HTTPAPI.Repository;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;

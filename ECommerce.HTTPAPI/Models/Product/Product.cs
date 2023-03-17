@@ -1,4 +1,4 @@
-﻿namespace ECommerce.HTTPAPI.Models.Product
+﻿namespace ECommerce.HTTPAPI.Models
 {
     public class Product : EntityBase
     {
@@ -6,6 +6,5 @@
         public string Description { get; set; }
         public string Price { get;set; }
         public string ImageUrl { get; set; }
-
     }
 }
