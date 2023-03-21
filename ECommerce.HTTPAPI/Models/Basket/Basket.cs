@@ -14,10 +14,8 @@ namespace ECommerce.HTTPAPI.Models
     {
        
         public Guid ProductId { get; set; }
-        public Product products { get; set; }
         public double Quantity { get; set; }
         public Guid UserId { get; set; }
-        public User user { get; set; }
 
     }
 
