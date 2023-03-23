@@ -58,7 +58,7 @@ namespace ECommerce.HTTPAPI.Controllers
         public bool DeleteBasket(Guid userId,Guid productId)
         {
             try
-            {
+            {   
                 var get = _dbContext.Baskets.Where(x=>x.ProductId == productId && x.UserId == userId).FirstOrDefault();
                 _dbContext.Remove(get);
                 _dbContext.SaveChanges();
