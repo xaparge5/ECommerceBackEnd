@@ -54,5 +54,20 @@ namespace ECommerce.HTTPAPI.Controllers
                 throw new Exception(ex.Message);
             }
         }
+        [HttpDelete]
+        public bool DeleteBasket(Guid userId,Guid productId)
+        {
+            try
+            {
+                var get = _dbContext.Baskets.Where(x=>x.ProductId == productId && x.UserId == userId).FirstOrDefault();
+                _dbContext.Remove(get);
+                _dbContext.SaveChanges();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
