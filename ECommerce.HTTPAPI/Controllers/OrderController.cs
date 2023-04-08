@@ -21,7 +21,7 @@ namespace ECommerce.HTTPAPI.Controllers
         }
         [HttpPost]
 
-        public bool CreateOrder(Guid userId)
+        public bool CreateOrder(Guid userId,Guid AddressId)
         {
             try
             {
@@ -34,6 +34,7 @@ namespace ECommerce.HTTPAPI.Controllers
                     order.CreatorId = userId;
                     order.ProductId = item.ProductId;
                     order.Price = product.Price;
+                    order.AddressId = AddressId;
                     order.Quantity = Convert.ToInt32(item.Quantity);
                     _dbContext.Add(order);
                     _dbContext.Remove(item);

@@ -1,5 +1,6 @@
 ﻿
 using ECommerce.HTTPAPI.Models;
+using ECommerce.HTTPAPI.Models.CustomerAddress;
 using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.HTTPAPI.Repository
@@ -14,5 +15,6 @@ namespace ECommerce.HTTPAPI.Repository
         public DbSet<Product> Products { get; set; }
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<CustomerAddress> CustomerAddresses { get; set; }
     }
 }
